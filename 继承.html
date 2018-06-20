@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function A(name,age,gender){
+        this.name=name;
+        this.age=age;
+        this.gender=gender;
+        this.say=function(){
+            console.log(this.name);
+        }
+    }
+    A.prototype={
+        run:function (){
+        console.log(this.name+" is running");
+    }
+    };
+    var a=new A("zg","20","gener");
+    console.log(a);
+    function B(name,age,gender,id,grade){
+//        A.apply(this,arguments);
+        this.id=id;
+        this.grade=grade;
+    }
+    B.prototype=new A();
+    var b=new B("zg","20","gender","2","200");
+    b.run();
+    b.say();
+    console.log(b);
+    var a = [1,2];
+    var b = function(){
+        this.name = 'a';
+    };
+    console.log(a instanceof Object);
+</script>
+</body>
+</html>

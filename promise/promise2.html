@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//function runAsync1(){
+//    var p = new Promise(function(resolve, reject){
+//        setTimeout(function(){
+//            console.log('1执行完成');
+//            resolve('随便什么数据');
+//        }, 2000)
+//    });
+//    return p;
+//}
+//function runAsync2(){
+//    var p = new Promise(function(resolve, reject){
+//        setTimeout(function(){
+//            console.log('2执行完成');
+//            resolve('随便什么数据');
+//        }, 2000)
+//    });
+//    return p;
+//}
+//function runAsync3(){
+//    var p = new Promise(function(resolve, reject){
+//        setTimeout(function(){
+//            console.log('3执行完成');
+//            resolve('随便什么数据');
+//        }, 2000)
+//    });
+//    return p;
+//}
+//Promise.all([runAsync1(), runAsync2(), runAsync3()])
+//        .then(function(result){
+//            console.log(result);
+//        })
+function runAsync1(){
+    var p = new Promise(function(resolve, reject){
+        setTimeout(function(){
+            var number = Math.ceil(Math.random()*10);
+            console.log('1执行完成');
+            resolve(number);
+        }, 2000)
+    });
+    return p;
+}
+function runAsync2(){
+    var p = new Promise(function(resolve, reject){
+        setTimeout(function(){
+            var number = Math.ceil(Math.random()*10);
+            console.log('2执行完成');
+            resolve(number);
+        }, 2000)
+    });
+    return p;
+}
+function runAsync3(){
+    var p = new Promise(function(resolve, reject){
+        setTimeout(function(){
+            var number = Math.ceil(Math.random()*10);
+            console.log('3执行完成');
+            resolve(number);
+        }, 2000)
+    });
+    return p;
+}
+Promise.all([runAsync1(), runAsync2(), runAsync3()])
+        .then(function(result){
+            console.log(result);
+        })
+</script>
+</body>
+</html>

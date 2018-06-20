@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="testdiv">
+    <p>this is <em>my</em> content</p>
+</div>
+<script>
+    window.onload=function(){
+        var para=document.createElement('p');
+        var text1=document.createTextNode('this is');
+        para.appendChild(text1);
+        var para1=document.createElement('em');
+        var text3=document.createTextNode('my');
+        para1.appendChild(text3);
+        para.appendChild(para1);
+        var text2=document.createTextNode(' content');
+        para.appendChild(text2);
+        var testdiv=document.getElementById('testdiv');
+        testdiv.appendChild(para);
+    };
+
+</script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #wrap {
+            width: 500px;
+            height: 400px;
+            margin: 50px auto;
+            background: rgba(219, 112, 147, 0.51);
+            border-radius: 5px;
+            position: relative;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .baidu {
+            width: 400px;
+            height: 300px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            border-radius: 5px;
+            background: white;
+        }
+
+        #list {
+            width: 100%;
+            background: #fff;
+            border-radius: 5px 5px 0 0;
+            padding: 19px 0 0 0;
+        }
+
+        #list li {
+            height: 50px;
+            padding: 0 30px;
+            box-sizing: border-box;
+        }
+
+        #list input {
+            display: inline-block;
+        }
+
+        #list li div, .select .selectAll {
+            float: left;
+            width: 12px;
+            height: 12px;
+            -border: 1px solid #cacaca;
+            position: relative;
+            top: 5px;
+            margin-right: 20px;
+        }
+
+        #list span {
+            height: 100%;
+        }
+
+        #list span:nth-of-type(1) {
+            float: left;
+        }
+
+        #list span:nth-of-type(2) {
+            float: right;
+        }
+
+        .select {
+            width: 100%;
+            height: 50px;
+            background: rgba(128, 128, 128, 0.91);
+            box-sizing: border-box;
+            padding: 0 30px;
+            border-radius: 0 0 5px 5px;
+        }
+
+        .select .selectAll {
+            top: 20px;
+            position: relative;
+        }
+
+        .select .selectAll span {
+            position: absolute;
+            top: -4px;
+            right: -48px;
+        }
+
+        .select div {
+            float: right;
+            margin-top: 16px;
+            height: 100%;
+            width: 250px;
+        }
+
+        .select div span {
+            display: inline-block;
+            height: 100%;
+            margin-right: 42px;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div class="baidu">
+        <ul id="list">
+            <li>
+                <div><input type="checkbox" name="song"/></div>
+                <span>龙卷风</span>
+                <span>邓紫棋</span>
+            </li>
+            <li>
+                <div><input type="checkbox" name="song"/></div>
+                <span>龙卷风</span>
+                <span>邓紫棋</span>
+            </li>
+            <li>
+                <div><input type="checkbox" name="song"/></div>
+                <span>龙卷风</span>
+                <span>邓紫棋</span>
+            </li>
+            <li>
+                <div><input type="checkbox" name="song"/></div>
+                <span>龙卷风</span>
+                <span>邓紫棋</span>
+            </li>
+            <li>
+                <div><input type="checkbox" name="song"/></div>
+                <span>龙卷风</span>
+                <span>邓紫棋</span>
+            </li>
+        </ul>
+        <div class="select">
+            <span class="selectAll">
+                <input type="checkbox" id="selectAll"/>
+                <span>全选</span>
+            </span>
+            <div class="others">
+                <span><em></em>收藏</span>
+                <span><em></em>添加</span>
+                <span><em></em>删除</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var list = document.querySelector('#list');
+    var lis = list.querySelectorAll('li');
+    var checkboxs = list.querySelectorAll('input');
+    var selectAll = document.querySelector('#selectAll');
+    var colors = ['pink', 'white'];
+    for (var i = 0; i < lis.length; i++) {
+        lis[i].index = i;
+        lis[i].style.background = colors[i % colors.length];
+        lis[i].onmouseover = function () {
+            this.style.background = 'yellow';
+        };
+        lis[i].onmouseout = function () {
+            var checkbox = this.querySelector('input');
+            if (checkbox.checked == false) {
+                this.style.background = colors[this.index % colors.length];
+            }
+        };
+        checkboxs[i].onchange = function () {
+            var num = 0;
+            for (var j = 0; j < checkboxs.length; j++) {
+                if (checkboxs[j].checked) {
+                    num++;
+                }
+            }
+            selectAll.checked = (num == checkboxs.length);
+        };
+        selectAll.onchange = function () {
+            for (var i = 0; i < checkboxs.length; i++) {
+                checkboxs[i].checked = this.checked;
+                if (this.checked) {
+                    lis[i].style.background = 'yellow';
+                }
+                else {
+                    lis[i].style.background = colors[i % colors.length];
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

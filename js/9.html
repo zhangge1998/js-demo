@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .list{
+            width: 500px;
+            height: 500px;
+            margin: 50px auto;
+            padding: 0;
+            list-style: none;
+            border: 1px solid #000;
+            position: relative;
+        }
+        .list li{
+            /*float: left;*/
+            position: absolute;//定位取代浮动
+            width: 48px;
+            height: 48px;
+            background: pink;
+            border: 1px solid #fff;
+        }
+    </style>
+</head>
+<body>
+<ul class="list">
+</ul>
+<script>
+    var list = document.querySelector('.list');
+    var inner = '';
+//    for(var i = 0; i < 10; i++) {
+//        for(var j = 0; j < 10; j++){
+//            inner += '<li style="top: '+i*50+'px;left: '+j*50+'px;">'+ i + '行'+ j + '列' +'</li>'
+//        }
+//    }
+    for(var i = 0; i < 100; i++) {
+        var column = i % 10;
+        var row = parseInt(i / 10);
+        inner += '<li style="top: '+ row*50 +'px;left: '+ column*50 +'px;">' +row + '行' + column + '列' + '</li>'
+    }
+    list.innerHTML = inner;
+</script>
+</body>
+</html>

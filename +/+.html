@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    console.log(true + 123);
+    console.log(true + '123');
+    console.log(new String('1') + 123);
+    console.log(new Number(12)  + 123);
+    console.log(undefined + '123');
+    console.log(undefined + 123);
+    console.log(null + '123');
+    console.log(null + 123);
+    //下面模拟了对象的转化过程
+    var o1 = {
+        toString: function() {
+            return 'str';
+        },
+        valueOf: function() {
+            return {}
+        }
+    };
+    console.log(o1 + '');
+    var o2 = {
+        toString: function() {
+            return 'str';
+        },
+        valueOf: function() {
+            return 'valueOf'
+        }
+    };
+    console.log(o2 + '');
+</script>
+</body>
+</html>

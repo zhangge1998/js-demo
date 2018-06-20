@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+            overflow: hidden;
+        }
+        #box div {
+            float: left;
+            width: 38px;
+            height: 100px;
+            border: 1px solid #fff;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var box = document.getElementById('box');
+//            console.time(1);
+            var inner = '';
+            for(var i = 0; i < 10; i++) {
+//              box.innerHTML += '<div>' + i +'</div>';   //耗时806.77587890625ms
+                if(i < 5) {
+                    inner += '<div style="background: red;">' + i + '</div>';
+                }
+                else{
+                    inner += '<div style="background: yellow;">' + i +'</div>';
+                }
+            }
+            box.innerHTML  = inner; //耗时2.791748046875ms
+//            console.timeEnd(1);
+            var divs = box.querySelectorAll('div');
+            console.log(divs);
+            for(var j = 0; j < divs.length; j++) {
+                //循环是在页面加载完之后执行的
+                divs[j].onclick = function() {
+                    /*
+                    * 点击事件中的代码是在用户点击之后才能执行，
+                    * 这回外面的循环已经执行完了，所以在这里使用外面循环的i,只能拿到循环之后结果
+                    *
+                    */
+                    console.log(this.innerHTML);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="box"></div>
+</body>
+</html>

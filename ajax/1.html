@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<input type="button" value="按钮" id="btn">
+<script>
+    /*
+     用js异步形式操作xml
+     数据交互
+     */
+    window.onload = function () {
+        var oBtn = document.getElementById('btn');
+        oBtn.onclick = function () {
+            var xhr = new XMLHttpRequest();
+            xhr.open('get','example.txt',true);
+            xhr.send();
+            xhr.onreadystatechange =function () {
+                if(xhr.readyState == 4){
+                    alert(xhr.responseText);
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

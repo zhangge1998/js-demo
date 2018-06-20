@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选项卡</title>
+    <style>
+        .wrap{
+            width: 302px;
+        }
+        .nav {
+            width: 300px;
+            height: 30px;
+            border: 1px solid #000;
+        }
+        .nav a {
+            float: left;
+            width: 98px;
+            height: 28px;
+            text-align: center;
+            border: solid 1px #000;
+            text-decoration: none;
+        }
+        .nav .active {
+            background: #000;
+            color: #fff;
+        }
+        .contains{
+            border: 1px solid #fff;
+        }
+        .contains img{
+            width: 100%;
+            display: none;
+        }
+        .contains .show{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <nav class="nav">
+        <a href="#" class="active">选项1</a>
+        <a href="#">选项2</a>
+        <a href="#">选项3</a>
+    </nav>
+    <div class="contains">
+        <img src="../showImage/image/image1.jpg" alt="" class="show">
+        <img src="../showImage/image/image2.jpg" alt="">
+        <img src="../showImage/image/image3.jpg" alt="">
+    </div>
+</div>
+<script>
+    var navs = document.querySelectorAll('.nav a');
+    var imgs = document.querySelectorAll('.contains img');
+    for(var i = 0; i < navs.length; i++) {
+        navs[i].onmouseover = function() {
+            for(var j = 0; j < navs.length; j++) {
+                navs[j].index = j;
+                navs[j].classList.remove('active');
+                imgs[j].classList.remove('show');
+            }
+            this.classList.add('active');
+            imgs[this.index].classList.add('show');
+        }
+    }
+</script>
+</body>
+</html>

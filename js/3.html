@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .nav {
+            width: 300px;
+            height: 30px;
+            border: 1px solid #000;
+        }
+
+        .nav a {
+            float: left;
+            width: 98px;
+            height: 28px;
+            text-align: center;
+            border: solid 1px #000;
+            text-decoration: none;
+        }
+
+        .nav .active {
+            background: #000;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<nav class="nav">
+    <a href="#" class="active">选项1</a>
+    <a href="#">选项2</a>
+    <a href="#">选项3</a>
+</nav>
+<script>
+    var nav = document.querySelector('.nav');
+    var navs = nav.querySelectorAll('a');
+    for (var i = 0; i < navs.length; i++) {
+        navs[i].onclick = fn;
+    }
+    function fn() {
+        for( var j = 0; j < navs.length; j++){
+//                navs[j].className = '';
+            navs[j].classList.remove('active');
+        }
+//        this.className = 'active';
+        this.classList.add('active');
+    }
+</script>
+</body>
+</html>

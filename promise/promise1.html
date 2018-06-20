@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function getNumber(){
+        var p = new Promise(function(resolve, reject){
+            setTimeout(function(){
+                var number = Math.ceil(Math.random()*10);
+                if(number <= 5){
+                    resolve(number);
+                }
+                else{
+                    reject('数字太大了')
+                }
+            }, 2000)
+
+        });
+        return p;
+
+    }
+    getNumber()
+            .then(function(data){
+                console.log('resolve');
+                console.log(data);
+                console.log(odata);
+            })
+            .catch(function(data){
+                console.log('reject');
+                console.log(data);
+            })
+</script>
+</body>
+</html>

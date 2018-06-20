@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .wrap{
+            width: 800px;
+            margin: 50px auto;
+            position: relative;
+        }
+        .data{
+            width: 800px;
+            height: 100px;
+            font-size: 20px;
+            box-sizing: border-box;
+            padding: 15px;
+            background: rgba(128, 128, 128, 0.31);
+            border-radius: 5px;
+            box-shadow: 0 0 0 5px #9999aa;
+            margin-bottom: 30px;
+        }
+        .wrap #search{
+            width: 90px;
+            display: block;
+            position: relative;
+            left: 700px;
+            border-radius: 5px;
+            background: rgba(128, 128, 128, 0.51);
+            outline: none;
+        }
+        .wrap span{
+            font-size: 20px;
+        }
+        .wrap input{
+            width: 50%;
+            height: 20px;
+            font-size: 20px;
+            line-height: 20px;
+            border: none;
+            outline: none;
+        }
+    </style>
+    <script>
+        var arrData = [ '100px', 'abc'-6, [], -98765, 34, 0, -2 , '300', ,
+        function() { alert(1); }, null, document, [], true, '200px' - 30, '23.45元',
+        5, Number('abc'), function() {alert(3);}, 'xyz'-90 ];
+        window.onload = function() {
+            var data = document.querySelector('.data');
+            var input1 = document.querySelector('#allNumber');
+            var input2 = document.querySelector('#change');
+            var input3 = document.querySelector('#max');
+            var input4 = document.querySelector('#beNaN');
+            var oBtn = document.querySelector('#search');
+            data.innerHTML = "var arrData = [ '100px', 'abc'-6, [], -98765, 34, 0, '-2', '300', function() { alert(1); }, null, document, [], true, '200px' - 30, '23.45元', 5, Number('abc'), function() {alert(3);}, 'xyz'-90 ];";
+            function getAllNumber() {
+                for(var i = 0; i < arrData.length; i++) {
+                    if(typeof arrData[i] == 'number' && !isNaN(arrData[i])){
+                        input1.value += arrData[i] + ' ';
+                    }
+                }
+            }
+
+            function changeToNumber() {
+                for(var i = 0; i < arrData.length; i++) {
+                    if(!isNaN(parseFloat(arrData[i]))) {
+                        input2.value += arrData[i] + ' ';
+                    }
+                }
+            }
+
+            function getIndexs() {
+                for(var i = 0; i < arrData.length; i++) {
+                    if(typeof arrData[i] == 'number' && isNaN(arrData[i])) {
+                        input4.value += i + ' ';
+                    }
+                }
+            }
+
+            function getMax() {
+                var max = 0;
+                for(var i = 0; i < arrData.length; i++) {
+                    if(!isNaN(arrData[i])) {
+                        max = arrData[i] > max ? arrData[i] : max;
+                    }
+                }
+                input3.value = max;
+            }
+            var onOff = true;
+            oBtn.onclick = function () {
+                if(onOff){
+                    getAllNumber();
+                    changeToNumber();
+                    getIndexs();
+                    getMax();
+                    onOff = false;
+                }
+
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <div class="data">
+    </div>
+    <input type="button" value="立即查找" id="search"/>
+    <span>1.所有的数字是：</span><input type="text" id="allNumber"/>
+    <hr>
+    <span>2.可以转换成数字的是：</span><input type="text" id="change"/>
+    <hr>
+    <span>3.转成数字的最大值是：</span><input type="text" id="max"/>
+    <hr>
+    <span>4.所有运算结果是 NaN 的位置：</span><input type="text" id="beNaN"/>
+</div>
+</body>
+</html>

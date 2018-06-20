@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            overflow: hidden;
+        }
+        #box div {
+            float: left;
+            width: 38px;
+            height: 98px;
+            border: 1px solid #fff;
+          }
+    </style>
+</head>
+<body>
+<div id="box">
+<!--
+需求： 动态创建10个div，前五个背景为红色，其余为黄色
+-->
+</div>
+<script>
+    var box = document.querySelector('#box');
+    console.time(1);
+    var inner = '';
+    for(var i = 0; i < 1000 ; i++) {
+//        box.innerHTML += '<div>' + i + '</div>';
+        if(i < 5) {
+            inner += '<div style="background: red;">' + i + '</div>';
+
+        }
+        else{
+            inner += '<div style="background: yellow;">' + i + '</div>';
+        }
+    }
+    box.innerHTML = inner;
+    console.timeEnd(1);
+</script>
+</body>
+</html>

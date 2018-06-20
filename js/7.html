@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            width: 400px;
+            height: 350px;
+            border: none;
+            vertical-align: top;
+        }
+        #wrap{
+            width: 400px;
+            height: 350px;
+            margin: 30px auto 0;
+            border: 10px solid #9999aa;
+            position: relative;
+        }
+        #wrap a{
+            width: 35px;
+            height: 35px;
+            border: 5px solid #fff;
+            top: 150px;
+            text-align: center;
+            text-decoration: none;
+            line-height: 35px;
+            font-size: 30px;
+            font-weight: bold;
+            background: #000;
+            color: #fff;
+            opacity: 0.4;
+        }
+        #wrap a:hover{
+            opacity: 0.9;
+        }
+        #prev, #next{
+            color: #000;
+            font-size: 30px;
+            position: absolute;
+            text-align: center;
+
+        }
+        #prev{
+            left: 10px;
+        }
+        #next{
+            right: 10px;
+        }
+        #tip{
+            background: #000;
+            color: #fff;
+            position: absolute;
+            top: 0;
+        }
+        #text, #tip{
+            background: #000;
+            color: #fff;
+            position: absolute;
+            left: 0;
+            width:400px;
+            height: 30px;
+            line-height: 30px;
+            opacity: 0.6;
+            text-align: center;
+        }
+        #text{
+            margin: 0;
+            bottom: 0;
+        }
+        #tip{
+            top: 0;
+        }
+        #wrap li{
+            float: left;
+            margin-right: 20px;
+            position: relative;
+            bottom: 50px;
+            left: 200px;
+            z-index: 1000;
+            /*border:1px solid #000;*/
+            color: white;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <a id="prev" href="#"><</a>
+    <a id="next" href="#">></a>
+    <span id="tip">数量正在计算中</span>
+    <p id="text">图片正在加载中</p>
+    <img id="image" alt="" />
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script>
+    var wrap = document.querySelector('#wrap');
+    console.log(wrap);
+    var prev = document.querySelector('#prev');
+    var next = document.querySelector('#next');
+    var tip = document.querySelector('#tip');
+    var text = document.querySelector('#text');
+    var img = document.querySelector('#image');
+    var indexs = document.getElementsByTagName('li');
+    var imageArr = ['../showImage/image/image1.jpg', '../showImage/image/image2.jpg', '../showImage/image/image3.jpg'];
+    var textArr  = ['雪山冰湖', '乡村雪景', '雪上之巅'];
+    var num = 0;
+    function imgTab() {
+        tip.innerHTML = num + 1 + '/' + textArr.length;
+        text.innerHTML = textArr[num];
+        img.src = imageArr[num];
+        for(var i = 0; i < indexs.length; i++) {
+            indexs[i].style.color = 'white';
+        }
+        indexs[num].style.color = 'black';
+    }
+    imgTab();
+    next.onclick = function() {
+        num++;
+        if(num == imageArr.length){
+            num = 0;
+        }
+        clearInterval(timer);
+        imgTab();
+        play();
+    };
+    prev.onclick = function () {
+        num--;
+        if(num == -1){
+            num = imageArr.length-1;
+        }
+        clearInterval(timer);
+        imgTab();
+        play();
+    };
+    for(var i = 0; i < indexs.length; i++) {
+      indexs[i].onmouseover = function() {
+          for( var j = 0; j < indexs.length; j++) {
+              indexs[j].index = j;
+          }
+          this.style.color = 'black';
+          num = this.index;
+          imgTab();
+        }
+    }
+    function code() {
+        num++;
+        if(num == imageArr.length){
+            num = 0;
+        }
+        imgTab();
+    }
+    var play = function() {
+        timer = setInterval('code()',2000);
+    };
+    play();
+</script>
+</body>
+</html>
